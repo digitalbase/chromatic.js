@@ -60,6 +60,7 @@ class GalleryView
     @photo_views  = _.map @photos, (photo) => new GalleryPhotoView(this, photo, options.photo || {})
     @ideal_height = parseInt(@el.children().first().css('height'))
     @viewport = $( (options || {}).viewport || @el)
+    @forceFullWidth = Boolean(options.forceFullWidth || false)
     $(window).on 'resize', _.debounce(@layout, 100)
     @viewport.on 'scroll', _.throttle(@lazyLoad, 100)
 
@@ -93,6 +94,9 @@ class GalleryView
     ideal_height   = @ideal_height || parseInt((@el.height() || $(window).height()) / 2)
     summed_width   = _.reduce @photos, ((sum, p) -> sum += p.aspect_ratio * ideal_height), 0
     rows           = Math.round(summed_width / viewport_width)
+
+    # forceFullWidth support
+    rows           = Math.max(rows, 1) if @forceFullWidth
 
     if rows < 1
       # (2a) Fallback to just standard size when just a few photos
