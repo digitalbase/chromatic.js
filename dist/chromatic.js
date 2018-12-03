@@ -1560,6 +1560,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
           });
           this.ideal_height = parseInt(this.el.children().first().css('height'));
           this.viewport = $((options || {}).viewport || this.el);
+          this.forceFullWidth = Boolean(options.forceFullWidth || false);
           $(window).on('resize', _.debounce(this.layout, 100));
           this.viewport.on('scroll', _.throttle(this.lazyLoad, 100));
 
@@ -1617,6 +1618,11 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
               return sum += p.aspect_ratio * ideal_height;
             }, 0);
             rows = Math.round(summed_width / viewport_width);
+
+            if (this.forceFullWidth) {
+              // forceFullWidth support
+              rows = Math.max(rows, 1);
+            }
 
             if (rows < 1) {
               // (2a) Fallback to just standard size when just a few photos
