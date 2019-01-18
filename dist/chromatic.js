@@ -1139,7 +1139,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
           nativeMap,
           nativeReduce,
           __hasProp = {}.hasOwnProperty;
-      _ = {};
+      var _ = {};
       ArrayProto = Array.prototype;
       nativeForEach = ArrayProto.forEach;
       nativeMap = ArrayProto.map;
