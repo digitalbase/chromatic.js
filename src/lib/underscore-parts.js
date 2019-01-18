@@ -1,7 +1,7 @@
 var ArrayProto, nativeForEach, nativeIsArray, nativeMap, nativeReduce,
   __hasProp = {}.hasOwnProperty;
 
-_ = {};
+var _ = {};
 
 ArrayProto = Array.prototype;
 nativeForEach = ArrayProto.forEach;
