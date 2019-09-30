@@ -62,7 +62,7 @@ class GalleryView
     @viewport = $( (options || {}).viewport || @el)
     @forceFullWidth = Boolean(options.forceFullWidth || false)
     $(window).on 'resize', _.debounce(@layout, 100)
-    window.matchMedia('print').addListener(@layout)
+    window.matchMedia?('print').addListener(@layout)
     @viewport.on 'scroll', _.throttle(@lazyLoad, 100)
 
     if (!!@photos[0] || !!@photos[0].aspect_ratio)
