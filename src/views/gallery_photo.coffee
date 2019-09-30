@@ -26,10 +26,11 @@ class GalleryPhotoView
       @photo.aspect_ratio = image.width/image.height
       callback() if callback
       @el.css {
-        backgroundImage: "url(#{src})"
         backgroundColor: 'transparent'
       }
-      #@el.attr('data-test','gijs');
+      @el.attr('style', (i, style) =>
+        return style + "background-image: url(#{src}) !important;"
+      )
 
       @loaded = true
     image.src = src
