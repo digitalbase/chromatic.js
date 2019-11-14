@@ -1609,7 +1609,6 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
             var ideal_height, offset, partition, rows, summed_width, viewport_width, weights; // (1) Find appropriate number of rows by dividing the sum of ideal photo widths by the width of the viewport
 
-            $(document.body).css('overflowY', 'scroll');
             viewport_width = this.el[0].getBoundingClientRect().width - parseInt(this.el.css('paddingLeft')) - parseInt(this.el.css('paddingRight')); // @el.width() gives wrong rounding
 
             if (this.el[0].offsetWidth > this.el[0].scrollWidth) {
@@ -1617,7 +1616,6 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
               viewport_width = viewport_width - _scrollbar_width();
             }
 
-            $(document.body).css('overflowY', 'auto');
             ideal_height = this.ideal_height || parseInt((this.el.height() || $(window).height()) / 2);
             summed_width = _.reduce(this.photos, function (sum, p) {
               return sum += p.aspect_ratio * ideal_height;
