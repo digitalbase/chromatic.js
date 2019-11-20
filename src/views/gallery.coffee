@@ -88,10 +88,8 @@ class GalleryView
 
   layout: =>
     # (1) Find appropriate number of rows by dividing the sum of ideal photo widths by the width of the viewport
-    $(document.body).css('overflowY', 'scroll')
     viewport_width = @el[0].getBoundingClientRect().width - parseInt(@el.css('paddingLeft')) - parseInt(@el.css('paddingRight')) # @el.width() gives wrong rounding
     viewport_width = viewport_width - _scrollbar_width() if @el[0].offsetWidth > @el[0].scrollWidth # has overflow
-    $(document.body).css('overflowY', 'auto')
     ideal_height   = @ideal_height || parseInt((@el.height() || $(window).height()) / 2)
     summed_width   = _.reduce @photos, ((sum, p) -> sum += p.aspect_ratio * ideal_height), 0
     rows           = Math.round(summed_width / viewport_width)
